@@ -11,25 +11,27 @@
             <h2
                 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"
             >
-                Sign in to your account
+                Set new password
             </h2>
         </div>
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form class="space-y-6" action="#" method="POST">
                 <div>
-                    <label
-                        for="email"
-                        class="block text-sm font-medium leading-6 text-gray-900 text-left"
-                        >Email address</label
-                    >
+                    <div class="flex items-center justify-between">
+                        <label
+                            for="new-password"
+                            class="block text-sm font-medium leading-6 text-gray-900"
+                            >New Password</label
+                        >
+                    </div>
                     <div class="mt-2">
                         <input
-                            id="email"
-                            name="email"
-                            type="email"
-                            autocomplete="email"
+                            id="new-password"
+                            name="new_password"
+                            type="password"
                             required=""
+                            placeholder="New Password"
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
                     </div>
@@ -38,42 +40,33 @@
                 <div>
                     <div class="flex items-center justify-between">
                         <label
-                            for="password"
+                            for="password-repeat"
                             class="block text-sm font-medium leading-6 text-gray-900"
-                            >Password</label
+                            >Confirm new password</label
                         >
-                        <div class="text-sm">
-                            <router-link to="/request-password"
-                                class="font-semibold text-indigo-600 hover:text-indigo-500"
-                                >Forgot password?</router-link
-                            >
-                        </div>
                     </div>
                     <div class="mt-2">
                         <input
-                            id="password"
-                            name="password"
+                            id="password-repeat"
+                            name="password_repeat"
                             type="password"
-                            autocomplete="current-password"
                             required=""
+                            placeholder="Confirm new password"
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
                     </div>
                 </div>
 
-                <div class="mt-4 flex items-center">
-                    <input
-                        id="remember_me"
-                        name="remember_me"
-                        type="checkbox"
-                        class="form-checkbox h-4 w-4 rounded text-indigo-600 transition duration-150 ease-in-out"
-                    />
-                    <label
-                        for="remember_me"
-                        class="ml-2 block text-sm leading-5 text-gray-900"
-                    >
-                        Remember me
-                    </label>
+                <div>
+                    <div class="flex items-center justify-between">
+                        <div class="text-sm">
+                            <router-link
+                                to="/login"
+                                class="font-semibold text-indigo-600 hover:text-indigo-500"
+                                >Go back to login</router-link
+                            >
+                        </div>
+                    </div>
                 </div>
 
                 <div>
@@ -81,7 +74,7 @@
                         type="submit"
                         class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
-                        Sign in
+                        Submit
                     </button>
                 </div>
             </form>
