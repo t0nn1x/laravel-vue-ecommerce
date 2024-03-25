@@ -8,6 +8,7 @@ import ResetPassword from "../views/ResetPassword.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import Users from "../views/Users.vue";
 import store from "../store";
+import NotFound from "../views/NotFound.vue";
 
 const routes = [
     {
@@ -50,7 +51,7 @@ const routes = [
     },
     {
         path: "/request-password",
-        name: "requestPassword ",
+        name: "requestPassword",
         meta: {
             requiresGuest: true,
         },
@@ -63,6 +64,11 @@ const routes = [
             requiresGuest: true,
         },
         component: ResetPassword,
+    },
+    {
+        path: "/:pathMatch(.*)",
+        name: "notFound",
+        component: NotFound
     },
 ];
 
