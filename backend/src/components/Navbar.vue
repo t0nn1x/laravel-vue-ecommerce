@@ -1,6 +1,9 @@
 <template>
-    <header class="flex justify-between items-center h-14 shadow bg-white">
-        <button class="p-4 text-gray-700">
+    <header class="flex justify-between items-center p-3 h-14 shadow bg-white">
+        <button
+            @click="emit('toggle-sidebar')"
+            class="flex items-center justify-center rounded transition-colors iw-8 h-8 text-gray-700 hover:bg-black/10"
+        >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -17,7 +20,7 @@
             </svg>
         </button>
 
-        <div class="px-4">
+        <div class="">
             <Menu as="div" class="relative inline-block text-left">
                 <div>
                     <MenuButton class="flex items-center">
@@ -110,6 +113,7 @@
 <script setup>
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 import { ChevronDownIcon } from "@heroicons/vue/20/solid";
+const emit = defineEmits(['toggle-sidebar'])
 </script>
 
 <style scoped></style>

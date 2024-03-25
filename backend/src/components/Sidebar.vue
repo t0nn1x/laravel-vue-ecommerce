@@ -1,5 +1,5 @@
 <template>
-    <div class="w-64 bg-indigo-800 text-white py-6 px-4">
+    <div class="w-64 transition-all bg-indigo-800 text-white py-6 px-4">
         <router-link
             to="/app/dashboard"
             class="flex items-center p-2 mb-2 transition-colors duration-200 transform rounded-md hover:bg-indigo-600 hover:text-white"
