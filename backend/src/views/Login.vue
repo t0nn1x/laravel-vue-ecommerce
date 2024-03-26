@@ -1,6 +1,32 @@
 <template>
     <GuestLayout title="Sign in to your account">
         <form class="space-y-6" method="POST" @submit.prevent="login">
+            <div
+                v-if="errorMsg"
+                class="flex items-center justify-between py-3 px-5 bg-red-500 text-white rounded"
+            >
+                {{ errorMsg }}
+                <span
+                @click="errorMsg = ''"
+                class="w-8 h-8 flex items-center justify-center rounded-full transition-colors cursor-pointer hover:bg-black/20"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6 18 18 6M6 6l12 12"
+                    />
+                </svg>
+            </span>
+            </div>
+            
             <div>
                 <label
                     for="email"
@@ -67,8 +93,23 @@
             <div>
                 <button
                     type="submit"
+                    :disabled="loading"
                     class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    :class="{
+                        'cursor-not-allowed': loading,
+                        'hover:bg-indigo-500': loading,
+                    }"
                 >
+                    <div
+                        v-if="loading"
+                        class="inline-block h-6 w-6 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white mr-2"
+                        role="status"
+                    >
+                        <span
+                            class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                            >Loading...</span
+                        >
+                    </div>
                     Sign in
                 </button>
             </div>
@@ -77,10 +118,12 @@
 </template>
 
 <script setup>
-import {ref} from 'vue';
+import { ref } from "vue";
 import GuestLayout from "../components/GuestLayout.vue";
-import store from '../store';
-import router from '../router';
+import { useRouter } from "vue-router";
+import store from "../store";
+
+const router = useRouter();
 
 let loading = ref(false);
 let errorMsg = ref("");
@@ -93,15 +136,16 @@ const user = {
 
 function login() {
     loading.value = true;
-    store.dispatch('login', user)
+    store
+        .dispatch("login", user)
         .then(() => {
             loading.value = false;
-            router.push({name: 'app.dashboard'})
+            router.push({ name: "app.dashboard" });
         })
-        .catch(({response}) => {
+        .catch(({ response }) => {
             loading.value = false;
             errorMsg.value = response.data.message;
-        })
+        });
 }
 </script>
 
