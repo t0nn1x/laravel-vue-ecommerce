@@ -65,6 +65,22 @@
 
 <script setup>
 import Spinner from "../components/core/Spinner.vue";
+import {computed, onMounted, ref} from "vue";
+import store from "../store";
+import {PRODUCTS_PER_PAGE} from "../constants.js"
+
+const perPage = ref(PRODUCTS_PER_PAGE);
+const search = ref('');
+const products = computed(() => store.state.products);
+
+onMounted(() => {
+    getProducts();
+})
+
+function getProducts() {
+    store.dispatch('getProducts')
+}
+
 </script>
 
 <style scoped></style>

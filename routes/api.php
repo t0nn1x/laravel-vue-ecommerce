@@ -11,7 +11,7 @@ Route::middleware('auth:sanctum')
         Route::middleware(Admin::class)->group(function () {
             Route::get('/user', [AuthController::class, 'getUser']);
             Route::post('/logout', [AuthController::class, 'logout']);
-            Route::apiResource('/proudct', ProductController::class);
+            Route::apiResource('/product', ProductController::class);
         });
     });
 
